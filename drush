@@ -44,6 +44,9 @@ fi
 # we redirect stderr in any way, e.g. `tput cols 2>/dev/null`, then the
 # error message is suppressed, but tput cols becomes confused about the
 # terminal and prints out the default value (80).
+if [ -n "$TERM" ] && [ "$TERM" = unknown ] ; then
+  TERM=dumb
+fi
 if [ -z $COLUMNS ] && [ -n "$TERM" ] && [ "$TERM" != dumb ] && [ -n "`which tput`" ] ; then
   # Note to cygwin/mingw/msys users: install the ncurses package to get tput command.
   # Note to mingw/msys users: there is no precompiled ncurses package.
